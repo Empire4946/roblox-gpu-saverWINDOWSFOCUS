@@ -112,7 +112,7 @@ local winUnfoc = function()
 	elseif not _G.LowFPS and not _G.SmoothForEyes then
 	    savegpu(60, false)
 	end
-	return
+return
 end
 
 local winFoc = function()
