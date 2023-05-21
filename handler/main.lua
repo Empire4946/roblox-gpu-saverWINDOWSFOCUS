@@ -102,7 +102,7 @@ RunService:Set3dRenderingEnabled(true)
 end
 
 
-local WindowFocusReleasedFunction = function()
+local winUnfoc = function()
     if _G.LowFPS and _G.SmoothForEyes then
 	savegpu(10, true)
 	elseif _G.LowFPS and not _G.SmoothForEyes then
@@ -115,19 +115,18 @@ local WindowFocusReleasedFunction = function()
 	return
 end
 
-local WindowFocusedFunction = function()
-	unsavegpu()
-	return
+local winFoc = function()
+unsavegpu()
+return
 end
 
-local Initialize = function()
-	UserInputService.WindowFocusReleased:Connect(WindowFocusReleasedFunction)
-	UserInputService.WindowFocused:Connect(WindowFocusedFunction)
-	return
+local Loader = function()
+UserInputService.WindowFocusReleased:Connect(winUnfoc)
+UserInputService.WindowFocused:Connect(winFoc)
+return
 end
 
-Initialize()
-
+Loader()
 
 while wait() do
     if _G.SmoothForEyes then
